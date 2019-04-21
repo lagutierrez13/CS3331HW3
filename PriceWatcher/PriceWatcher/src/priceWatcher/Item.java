@@ -8,12 +8,12 @@ import java.net.URISyntaxException;
 import java.text.*;
 
 public class Item {
-	private final String name;
-	private final double initPrice;
+	private String name;
+	private double initPrice;
 	private double currentPrice;
-	private final String url;
+	private String url;
 	private double change;
-	private final String dateAdded;
+	private String dateAdded;
 
 	// default constructor
 	public Item() {
@@ -23,6 +23,15 @@ public class Item {
 		this.url = "";
 		this.change = 0;
 		this.dateAdded = "";
+	}
+	
+	public Item(String name, double initPrice, String url) {
+		this.name = name;
+		this.initPrice = initPrice;
+		this.currentPrice = initPrice;
+		this.url = url;
+		calculateChange();
+		this.dateAdded = calculateDate();
 	}
 
 	public Item(String name, double initPrice, double currentPrice, String url) {
@@ -105,8 +114,28 @@ public class Item {
 
 	// setters
 	public void setRandomPrice() {
-		
 		this.currentPrice = Math.round((Math.random() * (this.initPrice * 2)) + (this.initPrice * .5));
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setInitPrice(double price) {
+		this.initPrice = price;
+	}
+	
+	public void setCurrentPrice(double price) {
+		this.currentPrice = price;
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public void setChange() {
+		calculateChange();
+	}
+	
 
 }

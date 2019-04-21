@@ -63,8 +63,8 @@ public class Main extends JFrame {
 		// --
 		// -- WRITE YOUR CODE HERE!
 		// --
-		this.itemView.item.updatePrice();
-		showMessage("Current Price: $" + this.itemView.item.getPrice());
+		this.itemView.getItem().updatePrice();
+		showMessage("Current Price: $" + this.itemView.getItem().getPrice());
 		repaint();
 	}
 
@@ -76,7 +76,7 @@ public class Main extends JFrame {
 		// --
 		// -- WRITE YOUR CODE HERE!
 		// --
-		this.itemView.item.launchBrowser();
+		this.itemView.getItem().launchBrowser();
 		showMessage("Redirecting you to page now...");
 	}
 

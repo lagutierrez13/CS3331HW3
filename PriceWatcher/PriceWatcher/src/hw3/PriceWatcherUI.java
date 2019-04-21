@@ -101,9 +101,12 @@ public class PriceWatcherUI extends JPanel implements ActionListener {
 
 	
 	class AddButtonListener implements ActionListener{
-		public void ActionPerformed(ActionEvent e, ItemView item, ItemViewManager manager) {
-			manager.addItem(item);
+		@Override
+		public void ActionPerformed(ActionEvent e) {
+			
 		}
+
+		
 	}
 	/*
 	 * // cambiar y hacer clase y action performed para cada boton class

@@ -25,16 +25,16 @@ import priceWatcher.*;
 /** A special panel to display the detail of an item. */
 
 @SuppressWarnings("serial")
-public class ItemView extends JPanel implements TableCellRenderer //implements ListCellRenderer<Item> {
+public class ItemView extends JPanel implements TableCellRenderer // implements ListCellRenderer<Item> {
 {
-
-	public Item item = new Item("Macbook Pro", 2999.99, 2999.99,
-			"https://www.bestbuy.com/site/apple-macbook-pro-13-display-intel-core-i5-8-gb-memory-128gb-flash-storage-space-gray/5721723.p?skuId=5721723");;
+	private Item item;
+	// new Item("Macbook Pro", 2999.99, 2999.99,
+	// "https://www.bestbuy.com/site/apple-macbook-pro-13-display-intel-core-i5-8-gb-memory-128gb-flash-storage-space-gray/5721723.p?skuId=5721723");;
 
 	private NumberFormat df = new DecimalFormat("#0.00");
 
 	/** Interface to notify a click on the view page icon. */
-	public interface ClickListener {	
+	public interface ClickListener {
 
 		/** Callback to be invoked when the view page icon is clicked. */
 		void clicked();
@@ -47,6 +47,19 @@ public class ItemView extends JPanel implements TableCellRenderer //implements L
 	private ClickListener listener;
 
 	/** Create a new instance. */
+	public ItemView(Item item) {
+		this.item = item;
+		setPreferredSize(new Dimension(100, 160));
+		setBackground(Color.WHITE);
+		addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (isViewPageClicked(e.getX(), e.getY()) && listener != null) {
+					listener.clicked();
+				}
+			}
+		});
+	}
+
 	public ItemView() {
 		setPreferredSize(new Dimension(100, 160));
 		setBackground(Color.WHITE);
@@ -129,6 +142,10 @@ public class ItemView extends JPanel implements TableCellRenderer //implements L
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public Item getItem() {
+		return this.item;
 	}
 
 	@Override
