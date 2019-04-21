@@ -102,8 +102,7 @@ public class PriceWatcherUI {
 		public void actionPerformed(ActionEvent e) {
 			JOptionPane options = new JOptionPane();
 			Object[] addFields = { "Name: ", nameTextField, "Price: ", priceTextField, "URL: ", urlTextField, };
-			int option = JOptionPane.showConfirmDialog(null, addFields, "Add your item fields",
-					JOptionPane.OK_CANCEL_OPTION);
+			int option = JOptionPane.showConfirmDialog(null, addFields, "Add item", JOptionPane.OK_CANCEL_OPTION);
 			if (option == JOptionPane.OK_OPTION) {
 				String name = nameTextField.getText();
 				String price = priceTextField.getText();
@@ -116,6 +115,17 @@ public class PriceWatcherUI {
 				nameTextField.setText("");
 				priceTextField.setText("");
 				urlTextField.setText("");
+			}
+		}
+	}
+
+	class CheckButtonActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int size = itemManager.itemViews.size();
+
+			for (int i = 0; i < size; i++) {
+				itemManager.getItemViews().getElementAt(i).getItem().setRandomPrice();
 			}
 		}
 	}
@@ -147,17 +157,38 @@ public class PriceWatcherUI {
 		}
 	}
 
-	class CheckButtonActionListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-
-		}
-	}
-
 	class EditButtonActionListener implements ActionListener {
+		private JTextField nameTextField = new JTextField();
+		private JTextField priceTextField = new JTextField();
+		private JTextField urlTextField = new JTextField();
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			// get item to edit
+			ListSelectionModel lsm = list.getSelectionModel();
+			int selected = lsm.getMinSelectionIndex();
 
+			ItemView itemView = (ItemView) list.getModel().getElementAt(selected);
+
+			// change item
+			JOptionPane options = new JOptionPane();
+			Object[] addFields = { "Name: ", nameTextField, "Price: ", priceTextField, "URL: ", urlTextField, };
+			int option = JOptionPane.showConfirmDialog(null, addFields, "Edit item", JOptionPane.OK_CANCEL_OPTION);
+			if (option == JOptionPane.OK_OPTION) {
+				String name = nameTextField.getText();
+				String price = priceTextField.getText();
+				String url = urlTextField.getText();
+
+				double doublePrice = Double.parseDouble(price);
+
+				itemView.getItem().setName(name);
+				itemView.getItem().setCurrentPrice(doublePrice);
+				itemView.getItem().setUrl(url);
+				// clear text fields
+				nameTextField.setText("");
+				priceTextField.setText("");
+				urlTextField.setText("");
+			}
 		}
 	}
 }
