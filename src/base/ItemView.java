@@ -87,7 +87,7 @@ public class ItemView extends JPanel // implements ListCellRenderer<Item> {
 		// -- WRITE YOUR CODE HERE!
 		// --
 		int x = 20, y = 30;
-		g.drawImage(getImage("appleLogo.png"), x, y, 20, 20, null);
+		g.drawImage(getImage("goTo.png"), x, y, 20, 20, null);
 		// g.drawString("[View]", x, y);
 		y += 50;
 		g.drawString("Name:", x, y);
