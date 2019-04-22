@@ -1,3 +1,9 @@
+/*
+ * CS 3331 - Dr. Cheon
+ * Created by: Alejandra Maciel, Luis Gutierrez & Victor Huicochea
+ * Last Edit Date: 04/21/2019
+ */
+
 package base;
 
 import java.awt.Color;
@@ -25,7 +31,7 @@ import priceWatcher.*;
 /** A special panel to display the detail of an item. */
 
 @SuppressWarnings("serial")
-public class ItemView extends JPanel // implements ListCellRenderer<Item> {
+public class ItemView extends JPanel implements TableCellRenderer // implements ListCellRenderer<Item> {
 {
 	private Item item;
 	// new Item("Macbook Pro", 2999.99, 2999.99,
@@ -87,7 +93,7 @@ public class ItemView extends JPanel // implements ListCellRenderer<Item> {
 		// -- WRITE YOUR CODE HERE!
 		// --
 		int x = 20, y = 30;
-		g.drawImage(getImage("appleLogo.png"), x, y, 20, 20, null);
+		g.drawImage(getImage("goTo.png"), x, y, 20, 20, null);
 		// g.drawString("[View]", x, y);
 		y += 50;
 		g.drawString("Name:", x, y);
@@ -146,5 +152,12 @@ public class ItemView extends JPanel // implements ListCellRenderer<Item> {
 
 	public Item getItem() {
 		return this.item;
+	}
+
+	@Override
+	public Component getTableCellRendererComponent(JTable arg0, Object arg1, boolean arg2, boolean arg3, int arg4,
+			int arg5) {
+		arg1 = this.item;
+		return this;
 	}
 }

@@ -1,3 +1,9 @@
+/*
+ * CS 3331 - Dr. Cheon
+ * Created by: Alejandra Maciel, Luis Gutierrez & Victor Huicochea
+ * Last Edit Date: 04/21/2019
+ */
+
 package priceWatcher;
 
 import java.util.*;
@@ -24,7 +30,7 @@ public class Item {
 		this.change = 0;
 		this.dateAdded = "";
 	}
-
+	
 	public Item(String name, double initPrice, String url) {
 		this.name = name;
 		this.initPrice = initPrice;
@@ -42,7 +48,7 @@ public class Item {
 		calculateChange();
 		this.dateAdded = calculateDate();
 	}
-
+	
 	public void launchBrowser() {
 		Desktop d = Desktop.getDesktop();
 		try {
@@ -75,7 +81,7 @@ public class Item {
 			change = 0;
 		}
 
-		change = ((this.initPrice - this.currentPrice) / this.initPrice) * 100;
+		change =  ((this.currentPrice * 100) / this.initPrice) - 100;
 
 		this.change = Math.round(change);
 	}
@@ -116,24 +122,26 @@ public class Item {
 	public void setRandomPrice() {
 		this.currentPrice = Math.round((Math.random() * (this.initPrice * 2)) + (this.initPrice * .5));
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 	public void setInitPrice(double price) {
 		this.initPrice = price;
 	}
-
+	
 	public void setCurrentPrice(double price) {
 		this.currentPrice = price;
 	}
-
+	
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
+	
 	public void setChange() {
 		calculateChange();
 	}
+	
+
 }
